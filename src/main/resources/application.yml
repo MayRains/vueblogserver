@@ -1,0 +1,52 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/vueblog2?useUnicode=true&characetrEncoding=UTF-8&useSSL=false&serverTimezone=GMT
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: password
+#
+
+# 开发环境下配置
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/vueblog2?useUnicode=true&characetrEncoding=UTF-8&useSSL=false&serverTimezone=GMT
+      username: root
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      # 连接池配置
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-wait: 10000
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      validation-query: SELECT 1 FROM DUAL
+      validation-query-timeout: 5000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      max-evictable-idle-time-millis: 60000
+      removeAbandoned: true
+      removeAbandonedTimeout: 1800
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat,wall #filters: #配置多个英文逗号分隔(统计，sql注入，log4j过滤)
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    timeout: 0
+
+server:
+  port: 8088
+
+logging:
+  level:
+    com.tzbfine.vueblogserver.dao.*: debug    #这是你的mapper包路径。
+
+
